@@ -175,7 +175,7 @@ export default function Checkout() {
             <div className="flex justify-center mb-10">
               <div className="bg-green-500 rounded-full w-32 h-32 flex items-center justify-center shadow-lg">
 
-                <img className='w-16' src='Assets/Icons/Sucess.png' alt='Sucess' />
+                <img className='w-16' src={`${process.env.PUBLIC_URL}/Assets/Icons/Sucess.png`} alt='Sucess' />
               </div>
             </div>
 

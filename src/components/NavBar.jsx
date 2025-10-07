@@ -93,7 +93,7 @@ const Navbar = () => {
 
             <div className="flex-1  z-10 max-w-4xl mx-8 flex items-center">
                 <div className="relative flex-1">
-                    <img src="Assets/Icons/search.png" alt="Search" className="w-5 absolute left-3 top-1/2 transform -translate-y-1/2" />
+                    <img src={`${process.env.PUBLIC_URL}/Assets/Icons/search.png`} alt="Search" className="w-5 absolute left-3 top-1/2 transform -translate-y-1/2" />
                     <input
                         type="text"
                         placeholder="Search courses"
@@ -124,7 +124,7 @@ const Navbar = () => {
                                 onClick={() => setIsCartOpen(!isCartOpen)}
                                 className="relative hover:opacity-80 transition-opacity"
                             >
-                                <img src='/Assets/Icons/Cart.png' alt='Cart' className="w-6 h-6" />
+                                <img src={`${process.env.PUBLIC_URL}/Assets/Icons/Cart.png`} alt='Cart' className="w-6 h-6" />
                                 {getTotalItems() > 0 && (
                                     <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                                         {getTotalItems()}
@@ -222,7 +222,7 @@ const Navbar = () => {
                             onClick={() => setToken(null)}
                             className=" z-20 px-3 py-1 text-sm text-white rounded-lg hover:bg-red-600 transition"
                         >
-                            <img src='/Assets/Icons/Logoout.png' alt='Logout' />
+                            <img src={`${process.env.PUBLIC_URL}/Assets/Icons/Logoout.png`} alt='Logout' />
                         </button>
 
                         <div className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white text-sm">

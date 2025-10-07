@@ -45,7 +45,7 @@ export default function Footer() {
           <p className="text-gray-400 text-sm mt-1">Mail: bywayedu@webkul.in</p>
           <div className="flex space-x-3 mt-4 text-gray-400">
             <div>
-              <img src="Assets/Icons/FullContact.png"  alt="Full Social media"/>
+              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/FullContact.png`}  alt="Full Social media"/>
             </div>
           </div>
         </div>

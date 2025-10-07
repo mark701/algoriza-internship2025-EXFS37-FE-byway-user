@@ -87,13 +87,13 @@ const MainPage = () => {
 
           <div className="hidden lg:block relative w-64 h-64 flex-shrink-0">
             <div className="absolute -top-16 -left-48 transform -translate-x-7">
-              <PopImage BackgroundColor="#F87171" ImagePath="Assets/Images/Image1.png" />
+              <PopImage BackgroundColor="#F87171" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image1.png`} />
             </div>
             <div className="absolute bottom-0 -left-4">
-              <PopImage BackgroundColor="#60A5FA" ImagePath="Assets/Images/Image2.png" />
+              <PopImage BackgroundColor="#60A5FA" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image2.png`} />
             </div>
             <div className="absolute -bottom-56 -right-3">
-              <PopImage BackgroundColor="#FACC15" ImagePath="Assets/Images/Image3.png" />
+              <PopImage BackgroundColor="#FACC15" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image3.png`} />
             </div>
           </div>
         </div>
@@ -138,13 +138,13 @@ const MainPage = () => {
               onClick={handleCategoryPrev}
               className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
             >
-              <img src="Assets/Icons/arrowLeft.png" alt="Left arrow" className="w-4 h-4" />
+              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowLeft.png`} alt="Left arrow" className="w-4 h-4" />
             </button>
             <button
               onClick={handleCategoryNext}
               className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
             >
-              <img src="Assets/Icons/arrowRight.png" alt="Right arrow" className="w-4 h-4" />
+              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowRight.png`} alt="Right arrow" className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -216,13 +216,13 @@ const MainPage = () => {
               onClick={handleInstructorPrev}
               className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
             >
-              <img src="Assets/Icons/arrowLeft.png" alt="Left arrow" className="w-4 h-4" />
+              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowLeft.png`} alt="Left arrow" className="w-4 h-4" />
             </button>
             <button
               onClick={handleInstructorNext}
               className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
             >
-              <img src="Assets/Icons/arrowRight.png" alt="Right arrow" className="w-4 h-4" />
+              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowRight.png`} alt="Right arrow" className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -282,13 +282,13 @@ const MainPage = () => {
               onClick={handleCategoryPrev}
               className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
             >
-              <img src="Assets/Icons/arrowLeft.png" alt="Left arrow" className="w-4 h-4" />
+              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowLeft.png`} alt="Left arrow" className="w-4 h-4" />
             </button>
             <button
               onClick={handleCategoryNext}
               className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
             >
-              <img src="Assets/Icons/arrowRight.png" alt="Right arrow" className="w-4 h-4" />
+              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowRight.png`} alt="Right arrow" className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -298,7 +298,7 @@ const MainPage = () => {
             {[1, 2, 3].map((i) => (
               <div key={i} className="border rounded-lg p-4 sm:p-6 shadow-sm bg-white hover:shadow-xl transition-all relative hover:z-10">
                 <div className="text-blue-500 text-xl sm:text-2xl mb-3">
-                  <img src="Assets/Icons/tag.png" alt="Tag" className="w-6 h-6 sm:w-8 sm:h-8" />
+                  <img src={`${process.env.PUBLIC_URL}/Assets/Icons/tag.png`} alt="Tag" className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
                 <p className="text-sm sm:text-base text-gray-700 font-semibold mb-4">
                   "Byway's tech courses are top-notch!
@@ -307,7 +307,7 @@ const MainPage = () => {
                 </p>
                 <div className="flex items-center mt-4">
                   <img
-                    src="Assets/Icons/Girl.png"
+                    src={`${process.env.PUBLIC_URL}/Assets/Icons/Girl.png`}
                     alt="Jane Doe"
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-4"
                   />
@@ -325,7 +325,7 @@ const MainPage = () => {
       <div className="flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 lg:px-72 mt-12 sm:mt-16 lg:mt-20 gap-8">
         <div className="w-full lg:w-auto px-4 sm:px-12 lg:px-24 py-6 sm:py-10">
           <img
-            src="Assets/Images/image10.png"
+            src={`${process.env.PUBLIC_URL}/Assets/Images/image10.png`}
             alt="image10"
             className="w-full h-auto max-w-md mx-auto"
           />
@@ -345,7 +345,7 @@ const MainPage = () => {
       <div className="flex flex-col lg:flex-row-reverse items-center justify-between px-4 sm:px-8 lg:px-72 mt-12 sm:mt-16 lg:mt-20 gap-8 pb-12">
         <div className="w-full lg:w-auto px-4 sm:px-12 lg:px-24 py-6 sm:py-10">
           <img
-            src="Assets/Images/image11.png"
+            src={`${process.env.PUBLIC_URL}/Assets/Images/image11.png`}
             alt="image11"
             className="w-full h-auto max-w-md mx-auto"
           />
