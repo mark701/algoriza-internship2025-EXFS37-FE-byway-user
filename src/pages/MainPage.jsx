@@ -298,7 +298,7 @@ const MainPage = () => {
             {[1, 2, 3].map((i) => (
               <div key={i} className="border rounded-lg p-4 sm:p-6 shadow-sm bg-white hover:shadow-xl transition-all relative hover:z-10">
                 <div className="text-blue-500 text-xl sm:text-2xl mb-3">
-                  <img src={`${process.env.PUBLIC_URL}/Assets/Icons/tag.png`} alt="Tag" className="w-6 h-6 sm:w-8 sm:h-8" />
+                  <img src={`${process.env.PUBLIC_URL}/Assets/Icons/Tag.png`} alt="Tag" className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
                 <p className="text-sm sm:text-base text-gray-700 font-semibold mb-4">
                   "Byway's tech courses are top-notch!
