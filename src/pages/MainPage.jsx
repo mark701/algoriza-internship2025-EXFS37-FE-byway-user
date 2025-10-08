@@ -86,13 +86,38 @@ const MainPage = () => {
           </div>
 
           <div className="hidden lg:block relative w-64 h-64 flex-shrink-0">
+            <img src={`${process.env.PUBLIC_URL}/Assets/Images/Dots.png`} alt='Dots' />
+            <div className='bg-black w-10 h-10 mt-40 ml-8 rounded-full flex items-center justify-center'>
+              <div className='w-4 h-4 bg-white rotate-45 rounded-sm'></div>
+            </div>
+
+            <div className='flex mb-60 -mt-32 -ml-64'>
+              <img className='-rotate-[80deg]' src={`${process.env.PUBLIC_URL}/Assets/Images/Dots.png`} alt='Dots' />
+            </div>
+
             <div className="absolute -top-16 -left-48 transform -translate-x-7">
+              <div className="absolute top-64 right-[58px] ">
+                <img className='rotate-[107deg] w-36 ' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
+
+              </div>
               <PopImage BackgroundColor="#F87171" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image1.png`} />
             </div>
+
+            {/* Arc positioned between top and middle images */}
+
             <div className="absolute bottom-0 -left-4">
+              <div className="absolute top-52 -right-0 ">
+                <img className='rotate-[5deg] w-36 ' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
+
+              </div>
               <PopImage BackgroundColor="#60A5FA" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image2.png`} />
             </div>
-            <div className="absolute -bottom-56 -right-3">
+
+            <div className="absolute -bottom-60 -right-3">
+              <div className="absolute top-64 right-6 ">
+                <img className='rotate-[69deg] w-36 ' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
+
+              </div>
               <PopImage BackgroundColor="#FACC15" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image3.png`} />
             </div>
           </div>
