@@ -8,7 +8,10 @@ export default function Checkout() {
   const [cart, setCart] = useAtom(cartAtom);
   const [isCartEmpty] = useAtom(isCartEmptyAtom);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const location = useLocation();
+
   const from = location.state?.from?.pathname || location.state?.from || "/";
 
   const [formData, setFormData] = useState({
@@ -155,6 +158,7 @@ export default function Checkout() {
       }))
     };
     try {
+      setIsSubmitting(true);
       const IsDataSucess = await UserCoursesServices.UserCourses(payload)
       if (IsDataSucess) {
         setCart([]);
@@ -163,6 +167,8 @@ export default function Checkout() {
       }
     } catch (error) {
       console.error("Error fetching Data:", error);
+    }finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -448,8 +454,8 @@ export default function Checkout() {
                 {/* Checkout Button */}
                 <button
                   onClick={handleCheckout}
-                  disabled={isCartEmpty || isFormIncomplete}
-                  className={`w-full py-4 rounded-lg font-semibold transition-colors ${isCartEmpty || isFormIncomplete
+                  disabled={isCartEmpty || isFormIncomplete || isSubmitting}
+                  className={`w-full py-4 rounded-lg font-semibold transition-colors ${isCartEmpty || isFormIncomplete || isSubmitting
                     ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                     : "bg-gray-900 text-white hover:bg-gray-800"
                     }`}
