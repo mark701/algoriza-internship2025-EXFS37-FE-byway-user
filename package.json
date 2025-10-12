@@ -12,6 +12,7 @@
     "autoprefixer": "^10.4.21",
     "axios": "^1.12.2",
     "framer-motion": "^12.23.21",
+    "html-react-parser": "^5.2.6",
     "jotai": "^2.14.0",
     "postcss": "^8.5.6",
     "react": "^19.1.1",

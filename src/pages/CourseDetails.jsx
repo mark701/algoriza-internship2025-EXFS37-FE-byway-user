@@ -7,6 +7,8 @@ import { authAtom } from "../utils/authAtom";
 import { cartAtom, isCourseInCartAtom } from "../utils/CartAtom";
 import { useAtom } from "jotai";
 import CourseCard from "../components/CourseCard";
+import parse from 'html-react-parser';
+
 const CourseDetails = () => {
   const { courseID } = useParams();
   const [cart, setCart] = useAtom(cartAtom);
@@ -142,7 +144,7 @@ const CourseDetails = () => {
             <div className="grid py-10 grid-cols-1 lg:grid-cols-3 gap-6 relative">
               <div className="lg:col-span-2">
                 <h1 className="text-3xl font-bold mb-2">{courseData.courseName}</h1>
-                <p className="text-gray-600 mb-4">{courseData.courseDescription}</p>
+                <p className="text-gray-600 mb-4"> {parse(courseData.courseDescription)}</p>
 
                 <div className="flex items-center gap-2 mb-6">
                   <img
@@ -249,7 +251,7 @@ const CourseDetails = () => {
               <div >
                 <h2 className="text-xl font-semibold">Course Description</h2>
                 <p className="text-gray-700 mt-2">
-                  {courseData.courseDescription}
+                 {parse(courseData.courseDescription)}
                 </p>
 
               </div>
@@ -258,7 +260,7 @@ const CourseDetails = () => {
               <div className="my-6  ">
                 <h2 className="text-xl font-semibold">Course Certification</h2>
                 <p className="text-gray-700 mt-2">
-                  {courseData.courseCertification}
+                  {parse(courseData.courseCertification)}
                 </p>
 
               </div>
