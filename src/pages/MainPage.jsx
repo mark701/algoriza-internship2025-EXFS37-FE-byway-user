@@ -174,7 +174,7 @@ const MainPage = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0 h-[15rem]">
           <div
             className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out pb-4 lg:pb-0"
             style={{
@@ -219,7 +219,7 @@ const MainPage = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0 h-[33rem]">
           <div className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out pb-4 lg:pb-0">
             {courseCountData.slice(0, 4).map((course) => (
               <div
@@ -234,9 +234,9 @@ const MainPage = () => {
       </div>
 
       <div className="mt-12 sm:mt-16 lg:mt-24 px-4 sm:px-6 lg:px-20">
-        <div className="flex items-center justify-between mb-6 sm:mb-9">
+        <div className="flex items-center justify-between mb-6 sm:mb-9 ">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Top Instructors</h2>
-          <div className="hidden sm:flex space-x-4 lg:space-x-6 mt-1">
+          <div className="hidden sm:flex space-x-4 lg:space-x-6 mt-1 ">
             <button
               onClick={handleInstructorPrev}
               className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
@@ -252,7 +252,7 @@ const MainPage = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0 h-[33rem]">
           <div
             className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out pb-4 lg:pb-0"
             style={{
