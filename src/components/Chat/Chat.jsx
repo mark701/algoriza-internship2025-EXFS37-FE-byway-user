@@ -187,18 +187,8 @@ export default function Chat() {
     setMessages([]);
   };
 
-  if (!token) {
-    return (
-      <div className="p-4 text-center text-gray-500">
-        Please login to use chat
-      </div>
-    );
-  }
-
   return (
     <div className="relative">
-      {/* User Search Component */}
-
       {/* Chat Button with Unread Badge */}
       <button
         onClick={() => setIsChatOpen(!isChatOpen)}
@@ -206,9 +196,15 @@ export default function Chat() {
         aria-label="Open chat"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+          />
         </svg>
-        {unreadCount > 0 && (
+
+        {token && unreadCount > 0 && (
           <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-[20px] h-5 flex items-center justify-center px-1 font-semibold">
             {unreadCount > 99 ? '99+' : unreadCount}
           </span>
@@ -217,7 +213,6 @@ export default function Chat() {
 
       {/* Chat Window */}
       {isChatOpen && (
-
         <div
           ref={chatRef}
           className="fixed bottom-4 right-4 w-[95vw] max-w-md h-[80vh] max-h-[600px] bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col z-40 animate-slideUp md:bottom-24 md:right-6 md:w-96"
@@ -225,7 +220,7 @@ export default function Chat() {
           {/* Header */}
           <div className="p-4 border-b bg-blue-500 text-white rounded-t-lg flex items-center justify-between">
             <h3 className="font-semibold text-lg truncate">
-              {selectedUser ? `${selectedUser.firstName} ${selectedUser.lastName}` : 'Messages'}
+              Chat
             </h3>
             <button
               onClick={() => setIsChatOpen(false)}
@@ -238,46 +233,64 @@ export default function Chat() {
             </button>
           </div>
 
-          {!selectedUser ? (
-            <div className="flex flex-col h-full overflow-hidden">
-              {/* Search users directly inside chat window */}
-              <div className="p-3 border-b bg-gray-50">
-                <UserSearch onSelectUser={selectUserToChat} />
+          {/* Main Chat Content */}
+          <div className="flex-1 overflow-hidden flex flex-col">
+            {!token ? (
+              // 🟡 Show login message if user not logged in
+              <div className="flex flex-col items-center justify-center h-full text-gray-600">
+                <svg
+                  className="w-16 h-16 text-gray-400 mb-3"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 12c2.485 0 4.5-2.015 4.5-4.5S14.485 3 12 3 7.5 5.015 7.5 7.5 9.515 12 12 12zm0 0c-3.727 0-6.75 1.791-6.75 4v2.25h13.5V16c0-2.209-3.023-4-6.75-4z"
+                  />
+                </svg>
+                <p className="text-center font-medium">Please log in to use the chat with other pepole</p>
+                <p className="text-sm text-gray-500 mt-1">You can still browse messages after logging in.</p>
               </div>
-
-              {/* Conversation list */}
-              <div className="flex-1 overflow-y-auto">
-                <ConversationList
-                  conversations={conversations}
-                  onSelectUser={selectUserToChat}
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="flex-1 overflow-hidden flex flex-col">
+            ) : !selectedUser ? (
+              // ✅ Normal Chat UI when logged in
+              <>
+                <div className="p-3 border-b bg-gray-50">
+                  <UserSearch onSelectUser={selectUserToChat} />
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  <ConversationList
+                    conversations={conversations}
+                    onSelectUser={selectUserToChat}
+                  />
+                </div>
+              </>
+            ) : (
               <ChatWindow
                 selectedUser={selectedUser}
                 messages={messages}
                 isTyping={isTyping}
                 isConnected={isConnected}
                 onBack={handleBackToConversations}
-                onSendMessage={(text) => {
-                  return signalRService.sendMessage({
+                onSendMessage={(text) =>
+                  signalRService.sendMessage({
                     receiverID: selectedUser.userID,
-                    messageText: text
-                  });
-                }}
+                    messageText: text,
+                  })
+                }
                 onTyping={() => signalRService.typing(selectedUser.userID)}
                 onStopTyping={() => signalRService.stopTyping(selectedUser.userID)}
               />
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
 
-      {/* Connection Status Indicator */}
-      {!isConnected && token && (
-        <div className="fixed  bottom-4 right-24 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-2 rounded-lg shadow-lg z-50 flex items-center gap-2">
+      {/* Connection Status */}
+      {token && !isConnected && (
+        <div className="fixed bottom-4 right-24 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-2 rounded-lg shadow-lg z-50 flex items-center gap-2">
           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-yellow-700"></div>
           <span>Connecting to chat...</span>
         </div>

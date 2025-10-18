@@ -7,6 +7,8 @@ import { UserServices } from '../services/UserServices';
 import { API_BASE_URL } from '../utils/ApiUrl';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CourseServices } from '../services/CourseServices';
+import parse from 'html-react-parser';
+
 const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -97,11 +99,11 @@ const Navbar = () => {
 
     const handleSearch = async () => {
         const trimmed = searchTerm.trim();
-         if (!trimmed) {
-        setSearchResults([]); // Clear previous results if input is empty
-        setShowSearch(false);
-        return;
-    }
+        if (!trimmed) {
+            setSearchResults([]); // Clear previous results if input is empty
+            setShowSearch(false);
+            return;
+        }
 
         setIsLoading(true);
         setShowSearch(true);
@@ -109,11 +111,11 @@ const Navbar = () => {
 
 
         try {
-            const response = await CourseServices.GetPagesUser(trimmed);
-
+            const response = await CourseServices.GetPagesAdmin(1, 10, trimmed, "");
+            console.log(response)
             // ✅ Handle cases where API returns null or undefined
-            if (response && Array.isArray(response) && response.length > 0) {
-                setSearchResults(response);
+            if (response.data && Array.isArray(response.data) && response.data.length > 0) {
+                setSearchResults(response.data);
             } else {
                 setSearchResults([]); // ensures "No users found" appears
             }
@@ -123,11 +125,11 @@ const Navbar = () => {
             setIsLoading(false);
         }
     };
-    const handleSelectUser = (user) => {
-        //   onSelectUser(user); 
+    const handleSelectCourse = (course) => {
         setShowSearch(false);
         setSearchTerm('');
         setSearchResults([]);
+        navigate(`/courses/${course.courseID}`);
     };
 
     return (
@@ -186,23 +188,35 @@ const Navbar = () => {
                                 </div>
                             ) : (
 
-                                searchResults.map((user) => (
+                                searchResults.map((course) => (
                                     <div
-                                        key={user.userID}
-                                        onClick={() => handleSelectUser(user)}
-                                        className="flex items-center gap-3 p-4 hover:bg-blue-50 cursor-pointer border-b last:border-b-0 transition"
+                                        key={course.courseID}
+                                        onClick={() => handleSelectCourse(course)}
+                                        className="flex items-center gap-4 p-4 hover:bg-blue-50 cursor-pointer border-b last:border-b-0 transition"
                                     >
-                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-lg shadow-md">
-                                            {user.firstName?.[0]?.toUpperCase()}{user.lastName?.[0]?.toUpperCase()}
+                                        {/* Course Image */}
+                                        <div className="w-14 h-14 flex-shrink-0">
+                                            <img
+                                                src={`${API_BASE_URL}/${course.courseImagePath}`}
+                                                alt={course.courseName}
+                                                className="w-full h-full object-cover rounded-lg shadow-md border"
+                                                onError={(e) => (e.target.src = '/default-course.jpg')}
+                                            />
                                         </div>
+
+                                        {/* Course Info */}
                                         <div className="flex-1 min-w-0">
-                                            <div className="font-medium text-gray-900 truncate">
-                                                {user.firstName} {user.lastName}
+                                            <div className="font-semibold text-gray-900 truncate text-base">
+                                                {parse(course.courseName)}
                                             </div>
-                                            <div className="text-sm text-gray-500 truncate">{user.userEmail}</div>
+                                            <div className="text-sm text-gray-500 truncate">
+                                                Level: {course.courseLevel}
+                                            </div>
                                         </div>
+
+                                        {/* View Button */}
                                         <div className="flex items-center gap-1 text-blue-500 text-sm font-medium">
-                                            <span>Chat</span>
+                                            <span>View</span>
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
