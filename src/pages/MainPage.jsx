@@ -21,7 +21,7 @@ const MainPage = () => {
   const [categoryStartIndex, setCategoryStartIndex] = useState(0);
   const [instructorStartIndex, setInstructorStartIndex] = useState(0);
 
-  const visibleCount = 4;
+  const visibleCount = 3;
 
   const handleCategoryPrev = () => {
     setCategoryStartIndex((prev) => (prev > 0 ? prev - 1 : prev));
@@ -63,7 +63,8 @@ const MainPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <div className="flex-1 max-w-lg text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
@@ -96,27 +97,22 @@ const MainPage = () => {
             </div>
 
             <div className="absolute -top-16 -left-48 transform -translate-x-7">
-              <div className="absolute top-64 right-[58px] ">
-                <img className='rotate-[107deg] w-36 ' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
-
+              <div className="absolute top-64 right-[58px]">
+                <img className='rotate-[107deg] w-36' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
               </div>
               <PopImage BackgroundColor="#F87171" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image1.png`} />
             </div>
 
-            {/* Arc positioned between top and middle images */}
-
             <div className="absolute bottom-0 -left-4">
-              <div className="absolute top-52 -right-0 ">
-                <img className='rotate-[5deg] w-36 ' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
-
+              <div className="absolute top-52 -right-0">
+                <img className='rotate-[5deg] w-36' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
               </div>
               <PopImage BackgroundColor="#60A5FA" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image2.png`} />
             </div>
 
             <div className="absolute -bottom-60 -right-3">
-              <div className="absolute top-64 right-6 ">
-                <img className='rotate-[69deg] w-36 ' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
-
+              <div className="absolute top-64 right-6">
+                <img className='rotate-[69deg] w-36' src={`${process.env.PUBLIC_URL}/Assets/Images/Arc1.png`} alt='Dots' />
               </div>
               <PopImage BackgroundColor="#FACC15" ImagePath={`${process.env.PUBLIC_URL}/Assets/Images/Image3.png`} />
             </div>
@@ -124,8 +120,9 @@ const MainPage = () => {
         </div>
       </div>
 
+      {/* Stats Section */}
       <div className="bg-gray-200 mt-8 sm:mt-16 lg:mt-52 py-8 sm:py-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-9 text-center">
             <div>
               <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
@@ -155,57 +152,62 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className="mt-12 sm:mt-16 lg:mt-24 px-4 sm:px-6 lg:px-20">
+      {/* Top Categories Section */}
+      <div className="mt-12 sm:mt-16 lg:mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6 sm:mb-9">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Top Categories</h2>
-          <div className="hidden sm:flex space-x-4 lg:space-x-6 mt-1">
+          <div className="hidden lg:flex space-x-4 lg:space-x-6 mt-1">
             <button
               onClick={handleCategoryPrev}
-              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
+              disabled={categoryStartIndex === 0}
+              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl flex items-center justify-center transition-colors"
             >
               <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowLeft.png`} alt="Left arrow" className="w-4 h-4" />
             </button>
             <button
               onClick={handleCategoryNext}
-              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
+              disabled={categoryStartIndex >= categoryCountData.length - visibleCount}
+              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl flex items-center justify-center transition-colors"
             >
               <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowRight.png`} alt="Right arrow" className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0 h-[15rem]">
-          <div
-            className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out pb-4 lg:pb-0"
-            style={{
-              transform: window.innerWidth >= 1024 ? `translateX(-${categoryStartIndex * 409}px)` : 'none'
-            }}
-          >
-            {categoryCountData.map((category) => (
-              <div
-                key={category.categoryID}
-                className="bg-white rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col items-center text-center min-w-[280px] sm:min-w-[320px] lg:w-[409px] flex-shrink-0 relative hover:z-10"
-              >
-                <div className="bg-gray-100 rounded-full flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mb-4 group-hover:scale-110 transition-transform">
-                  <img
-                    src={`${API_BASE_URL}${category.categoryImagePath}`}
-                    alt="category"
-                    className="max-w-[60%] max-h-[60%] object-contain"
-                  />
+        {/* Categories Carousel with Peek */}
+        <div className="relative">
+          <div className="overflow-x-auto overflow-y-hidden lg:overflow-hidden -mx-4 h-[15rem] lg:mx-0 lg:px-0">
+            <div
+              className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out"
+              style={{
+                transform: window.innerWidth >= 1024 ? `translateX(-${categoryStartIndex * (360 + 24)}px)` : 'none'
+              }}
+            >
+              {categoryCountData.map((category) => (
+                <div
+                  key={category.categoryID}
+                  className="bg-white rounded-xl sm:p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col items-center text-center min-w-[280px] sm:min-w-[320px] lg:min-w-[360px] lg:w-[360px] flex-shrink-0"
+                >
+                  <div className="bg-gray-100 rounded-full flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mb-4 group-hover:scale-110 transition-transform">
+                    <img
+                      src={`${API_BASE_URL}${category.categoryImagePath}`}
+                      alt="category"
+                      className="max-w-[60%] max-h-[60%] object-contain"
+                    />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{category.categoryName}</h3>
+                  <p className="text-xs sm:text-sm text-gray-600">{category.courseCount} Courses</p>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">
-                  {category.categoryName}
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  {category.courseCount} Courses
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+          {/* Gradient Overlays for Peek Effect on Desktop */}
+          <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
         </div>
       </div>
 
-      <div className="mt-12 sm:mt-16 lg:mt-24 px-4 sm:px-6 lg:px-20">
+      {/* Top Courses Section */}
+      <div className="mt-12 sm:mt-16 lg:mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6 sm:mb-9">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Top Courses</h2>
           <div className="flex text-blue-400 mt-1">
@@ -219,109 +221,103 @@ const MainPage = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0 h-[33rem]">
-          <div className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out pb-4 lg:pb-0">
-            {courseCountData.slice(0, 4).map((course) => (
-              <div
-                key={course.courseID}
-                className="bg-white rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col min-w-[280px] sm:min-w-[320px] lg:w-[409px] flex-shrink-0 relative hover:z-10"
-              >
-                <CourseCard course={course} />
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          {courseCountData.slice(0, 3).map((course) => (
+            <div
+              key={course.courseID}
+              className="bg-white rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col"
+            >
+              <CourseCard course={course} />
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="mt-12 sm:mt-16 lg:mt-24 px-4 sm:px-6 lg:px-20">
-        <div className="flex items-center justify-between mb-6 sm:mb-9 ">
+      {/* Top Instructors Section */}
+      <div className="mt-12 sm:mt-16 lg:mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-6 sm:mb-9">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Top Instructors</h2>
-          <div className="hidden sm:flex space-x-4 lg:space-x-6 mt-1 ">
+          <div className="hidden lg:flex space-x-4 lg:space-x-6 mt-1">
             <button
               onClick={handleInstructorPrev}
-              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
+              disabled={instructorStartIndex === 0}
+              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl flex items-center justify-center transition-colors"
             >
               <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowLeft.png`} alt="Left arrow" className="w-4 h-4" />
             </button>
             <button
               onClick={handleInstructorNext}
-              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
+              disabled={instructorStartIndex >= instructorData.length - visibleCount}
+              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl flex items-center justify-center transition-colors"
             >
               <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowRight.png`} alt="Right arrow" className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        <div className="overflow-x-auto lg:overflow-hidden -mx-4 px-4 sm:mx-0 sm:px-0 h-[33rem]">
-          <div
-            className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out pb-4 lg:pb-0"
-            style={{
-              transform: window.innerWidth >= 1024 ? `translateX(-${instructorStartIndex * 410}px)` : 'none'
-            }}
-          >
-            {instructorData.map((instructor) => (
-              <div
-                key={instructor.instructorID}
-                className="p-6 sm:p-8 lg:p-11 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all overflow-hidden min-w-[280px] sm:min-w-[320px] lg:w-[410px] flex-shrink-0 relative hover:z-10"
-              >
-                <img
-                  src={`${API_BASE_URL}${instructor.instructorImagePath}`}
-                  alt="instructor"
-                  className="w-full h-48 sm:h-56 lg:h-64 object-contain rounded-lg"
-                />
-                <div className="mt-4 text-center">
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900">
-                    {instructor.instructorName}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-2">
-                    {instructor.jobTilteName}
-                  </p>
-                  <div className="flex pt-3 mt-4 border-t border-gray-200 justify-between text-sm">
-                    <div className="flex items-center">
-                      <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                      </svg>
-                      <span className="ml-1 text-gray-900 font-medium">{instructor.courseRate}</span>
-                    </div>
-                    <div className="text-gray-600">
-                      <span className="font-medium">{instructor.studentsCount}</span> Students
+        {/* Instructors Carousel with Peek */}
+        <div className="relative">
+          <div className="overflow-x-auto overflow-y-hidden lg:overflow-hidden -mx-4 px-4 lg:mx-0 h-[33rem] lg:px-0">
+            <div
+              className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out"
+              style={{
+                transform: window.innerWidth >= 1024 ? `translateX(-${instructorStartIndex * (360 + 24)}px)` : 'none'
+              }}
+            >
+              {instructorData.map((instructor) => (
+                <div
+                  key={instructor.instructorID}
+                  className="p-6 sm:p-8 lg:p-11 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all overflow-hidden min-w-[280px] sm:min-w-[320px] lg:min-w-[360px] lg:w-[360px] flex-shrink-0"
+                >
+                  <img
+                    src={`${API_BASE_URL}${instructor.instructorImagePath}`}
+                    alt="instructor"
+                    className="w-full h-48 sm:h-56 lg:h-64 object-contain rounded-lg"
+                  />
+                  <div className="mt-4 text-center">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+                      {instructor.instructorName}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-2">
+                      {instructor.jobTilteName}
+                    </p>
+                    <div className="flex pt-3 mt-4 border-t border-gray-200 justify-between text-sm">
+                      <div className="flex items-center">
+                        <svg
+                          className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                        </svg>
+                        <span className="ml-1 text-gray-900 font-medium">{instructor.courseRate}</span>
+                      </div>
+                      <div className="text-gray-600">
+                        <span className="font-medium">{instructor.studentsCount}</span> Students
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {/* Gradient Overlays for Peek Effect on Desktop */}
+          <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
         </div>
       </div>
 
-      <div className="mt-12 sm:mt-16 lg:mt-24 px-4 sm:px-6 lg:px-20">
+      {/* Testimonials Section */}
+      <div className="mt-12 sm:mt-16 lg:mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-6 sm:mb-9">
           <h2 className="max-w-xs sm:max-w-md text-xl sm:text-2xl font-bold text-gray-900">
             What Our Customer Say About Us
           </h2>
-          <div className="hidden sm:flex space-x-4 lg:space-x-6 mt-1">
-            <button
-              onClick={handleCategoryPrev}
-              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
-            >
-              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowLeft.png`} alt="Left arrow" className="w-4 h-4" />
-            </button>
-            <button
-              onClick={handleCategoryNext}
-              className="w-10 h-10 sm:w-12 sm:h-10 bg-gray-200 hover:bg-gray-300 rounded-xl flex items-center justify-center transition-colors"
-            >
-              <img src={`${process.env.PUBLIC_URL}/Assets/Icons/arrowRight.png`} alt="Right arrow" className="w-4 h-4" />
-            </button>
-          </div>
         </div>
 
         <div className="py-6 sm:py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="border rounded-lg p-4 sm:p-6 shadow-sm bg-white hover:shadow-xl transition-all relative hover:z-10">
+              <div key={i} className="border rounded-lg p-4 sm:p-6 shadow-sm bg-white hover:shadow-xl transition-all">
                 <div className="text-blue-500 text-xl sm:text-2xl mb-3">
                   <img src={`${process.env.PUBLIC_URL}/Assets/Icons/Tag.png`} alt="Tag" className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
@@ -347,15 +343,16 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 lg:px-72 mt-12 sm:mt-16 lg:mt-20 gap-8">
-        <div className="w-full lg:w-auto px-4 sm:px-12 lg:px-24 py-6 sm:py-10">
+      {/* CTA Sections */}
+      <div className="flex flex-col lg:flex-row items-center justify-between max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 mt-12 sm:mt-16 lg:mt-20 gap-8">
+        <div className="w-full lg:w-1/2 px-4 sm:px-12 lg:px-8 py-6 sm:py-10">
           <img
             src={`${process.env.PUBLIC_URL}/Assets/Images/image10.png`}
             alt="image10"
             className="w-full h-auto max-w-md mx-auto"
           />
         </div>
-        <div className="max-w-xl py-5 text-center lg:text-left lg:mr-32 lg:pl-16">
+        <div className="w-full lg:w-1/2 py-5 text-center lg:text-left px-4 lg:px-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Become an Instructor</h2>
           <p className="text-sm sm:text-base text-gray-600 mb-6">
             Instructors from around the world teach millions of students on Byway.
@@ -367,15 +364,15 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row-reverse items-center justify-between px-4 sm:px-8 lg:px-72 mt-12 sm:mt-16 lg:mt-20 gap-8 pb-12">
-        <div className="w-full lg:w-auto px-4 sm:px-12 lg:px-24 py-6 sm:py-10">
+      <div className="flex flex-col lg:flex-row-reverse items-center justify-between max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 mt-12 sm:mt-16 lg:mt-20 gap-8 pb-12">
+        <div className="w-full lg:w-1/2 px-4 sm:px-12 lg:px-8 py-6 sm:py-10">
           <img
             src={`${process.env.PUBLIC_URL}/Assets/Images/image11.png`}
             alt="image11"
             className="w-full h-auto max-w-md mx-auto"
           />
         </div>
-        <div className="max-w-xl py-5 text-center lg:text-left lg:mr-32 lg:pl-16">
+        <div className="w-full lg:w-1/2 py-5 text-center lg:text-left px-4 lg:px-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Transform your life through education</h2>
           <p className="text-sm sm:text-base text-gray-600 mb-6">
             Learners around the world are launching new careers,

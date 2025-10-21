@@ -258,18 +258,6 @@ const FilterSideBar = ({ filterCourse, setFilterCourse }) => {
               </label>
             ))}
 
-            {/* For testing scroll wheel height reapeated like 2-3 times  */}
-
-            {/* <label className="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-1 rounded">
-                <input
-                  type="checkbox"
-                  checked="adsdasd"
-                  
-                  className="w-4 h-4 text-blue-600 rounded"
-                />
-                <span className="text-gray-700">adsdasd</span>
-              </label> */}
-
                  
 
           </div>
