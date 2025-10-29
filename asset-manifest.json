@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/algoriza-internship2025-EXFS37-FE-byway-user/static/css/main.7c7b149e.css",
-    "main.js": "/algoriza-internship2025-EXFS37-FE-byway-user/static/js/main.bec810c4.js",
+    "main.css": "/algoriza-internship2025-EXFS37-FE-byway-user/static/css/main.5f5d95f6.css",
+    "main.js": "/algoriza-internship2025-EXFS37-FE-byway-user/static/js/main.9ce5f6f8.js",
     "static/js/453.547b5969.chunk.js": "/algoriza-internship2025-EXFS37-FE-byway-user/static/js/453.547b5969.chunk.js",
     "index.html": "/algoriza-internship2025-EXFS37-FE-byway-user/index.html",
-    "main.7c7b149e.css.map": "/algoriza-internship2025-EXFS37-FE-byway-user/static/css/main.7c7b149e.css.map",
-    "main.bec810c4.js.map": "/algoriza-internship2025-EXFS37-FE-byway-user/static/js/main.bec810c4.js.map",
+    "main.5f5d95f6.css.map": "/algoriza-internship2025-EXFS37-FE-byway-user/static/css/main.5f5d95f6.css.map",
+    "main.9ce5f6f8.js.map": "/algoriza-internship2025-EXFS37-FE-byway-user/static/js/main.9ce5f6f8.js.map",
     "453.547b5969.chunk.js.map": "/algoriza-internship2025-EXFS37-FE-byway-user/static/js/453.547b5969.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c7b149e.css",
-    "static/js/main.bec810c4.js"
+    "static/css/main.5f5d95f6.css",
+    "static/js/main.9ce5f6f8.js"
   ]
 }
