@@ -180,13 +180,13 @@ const MainPage = () => {
             <div
               className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out"
               style={{
-                transform: window.innerWidth >= 1024 ? `translateX(-${categoryStartIndex * (360 + 24)}px)` : 'none'
+                transform: window.innerWidth >= 1024 ? `translateX(-${categoryStartIndex * (380 + 24)}px)` : 'none'
               }}
             >
               {categoryCountData.map((category) => (
                 <div
                   key={category.categoryID}
-                  className="bg-white rounded-xl sm:p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col items-center text-center min-w-[280px] sm:min-w-[320px] lg:min-w-[360px] lg:w-[360px] flex-shrink-0"
+                  className="bg-white rounded-xl sm:p-6 shadow-sm hover:shadow-xl transition-all group flex flex-col items-center text-center min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] lg:w-[380px] flex-shrink-0"
                 >
                   <div className="bg-gray-100 rounded-full flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mb-4 group-hover:scale-110 transition-transform">
                     <img
@@ -201,8 +201,6 @@ const MainPage = () => {
               ))}
             </div>
           </div>
-          {/* Gradient Overlays for Peek Effect on Desktop */}
-          <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
         </div>
       </div>
 
@@ -261,13 +259,13 @@ const MainPage = () => {
             <div
               className="flex gap-4 sm:gap-6 lg:gap-8 transition-transform duration-500 ease-in-out"
               style={{
-                transform: window.innerWidth >= 1024 ? `translateX(-${instructorStartIndex * (360 + 24)}px)` : 'none'
+                transform: window.innerWidth >= 1024 ? `translateX(-${instructorStartIndex * (380 + 24)}px)` : 'none'
               }}
             >
               {instructorData.map((instructor) => (
                 <div
                   key={instructor.instructorID}
-                  className="p-6 sm:p-8 lg:p-11 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all overflow-hidden min-w-[280px] sm:min-w-[320px] lg:min-w-[360px] lg:w-[360px] flex-shrink-0"
+                  className="p-6 sm:p-8 lg:p-11 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all overflow-hidden min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] lg:w-[380px] flex-shrink-0"
                 >
                   <img
                     src={`${API_BASE_URL}${instructor.instructorImagePath}`}
@@ -301,8 +299,6 @@ const MainPage = () => {
             </div>
           </div>
 
-          {/* Gradient Overlays for Peek Effect on Desktop */}
-          <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
         </div>
       </div>
 
